@@ -464,6 +464,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
 
         resolveLayoutDirection();
         updateLayoutStateToFillEnd(mAnchorInfo);
+        removeAndRecycleAllViews(recycler);
 
         // Calculate the flex lines until the calculated cross size reaches the
         // LayoutState#mAvailable (or until the end of the flex container)
@@ -521,7 +522,6 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
             }
         }
 
-        detachAndScrapAttachedViews(recycler);
         int filledToEnd = fill(recycler, state, mLayoutState);
         if (DEBUG) {
             Log.d(TAG, String.format("filled: %d toward end", filledToEnd));
